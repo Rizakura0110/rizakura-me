@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint --dir src",
+    "format": "next lint --fix --dir src"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
@@ -17,6 +19,17 @@
   "devDependencies": {
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.20",
-    "typescript": "^4.8.3"
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-config-next": "12.3.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.3",
+    "typescript-eslint": "^0.0.1-alpha.0"
   }
 }
