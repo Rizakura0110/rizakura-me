@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { ColorSwitchButton } from './toggle'
 
 const name = 'rizakura'
 export const siteTitle = 'rizakura.me'
@@ -43,6 +44,9 @@ export default function Layout({
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <div>
+              <ColorSwitchButton aria-label="ダークモード"/>
+            </div>
           </>
         ) : (
           <>

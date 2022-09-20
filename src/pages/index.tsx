@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
+import { Link } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 export default function Home({
 }: {
@@ -13,10 +15,19 @@ export default function Home({
       <section className={utilStyles.headingMd}>
         <p>[rizakura]</p>
         <p>
-          <a href="https://twitter.com/rizakura___" target="_blank" rel="noreferrer">Twitter</a>
+          <Link href="/article/" isExternal>
+            Posts<ExternalLinkIcon mx='2px' />
+          </Link>
         </p>
         <p>
-          <a href="https://github.com/Rizakura0110" target="_blank" rel="noreferrer">GitHub</a>
+          <Link href="https://twitter.com/rizakura___" >
+            Twitter<ExternalLinkIcon mx='2px' />
+          </Link>
+        </p>
+        <p>
+          <Link href="https://github.com/Rizakura0110">
+            GitHub<ExternalLinkIcon mx='2px' />
+          </Link>
         </p>
       </section>
     </Layout>
