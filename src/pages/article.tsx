@@ -11,6 +11,7 @@ export default function Home({
 }: {
   allPostsData: {
     date: string
+    tag: string
     title: string
     id: string
   }[]
@@ -30,11 +31,12 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, tag }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
               </Link>
+              <a>{tag}</a>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
