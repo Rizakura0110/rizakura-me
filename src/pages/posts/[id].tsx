@@ -16,7 +16,7 @@ export default function Post({
   }
 }) {
   return (
-    <Layout>
+    <Layout post>
       <Head>
         <title>{postData.title}</title>
       </Head>

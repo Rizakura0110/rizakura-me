@@ -17,26 +17,20 @@ export default function Home({
   }[]
 }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
-        <title>rizakura-article</title>
+        <title>Articles</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[rizakura]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+      <section className={utilStyles.articleHeadingMd}>
+        <p>All Posts</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title, tag }) => (
+          {allPostsData.map(({ id, date, title}) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
               </Link>
-              <a>{tag}</a>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
