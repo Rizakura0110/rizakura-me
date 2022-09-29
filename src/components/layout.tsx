@@ -5,7 +5,6 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 const name = 'rizakura'
-export const siteTitle = 'rizakura.me'
 
 export default function Layout({
   children,
@@ -19,7 +18,7 @@ export default function Layout({
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/profile.jpg" />
       </Head>
       <header className={styles.header}>
         {home && (
