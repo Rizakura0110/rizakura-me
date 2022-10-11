@@ -35,6 +35,12 @@
     font-size: 15px;
     letter-spacing: 0.5px;
   }
+
+  .icon {
+    border-radius: 50%;
+    width:  144px;
+    height: 144px;
+  }
   
   .borderCircle {
     border-radius: 9999px;
