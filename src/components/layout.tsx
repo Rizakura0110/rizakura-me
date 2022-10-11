@@ -23,7 +23,6 @@ export default function Layout({
       <header className={styles.header}>
         {home && (
           <>
-            <link className={utilStyles.heading2Xl} rel="icon" href="/images/profile.jpg" />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         )}
