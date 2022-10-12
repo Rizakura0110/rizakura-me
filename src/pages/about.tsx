@@ -12,11 +12,7 @@ export default function Home({
         <title>About</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>
-          <Link href="https://twitter.com/rizakura_" >
-            ・Twitter
-          </Link>
-        </p>
+        
         <p>
           <Link href="https://github.com/Rizakura0110">
             ・GitHub
