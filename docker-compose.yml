@@ -6,7 +6,6 @@ services:
     working_dir: /home/rasak/app
     ports:
       - "3000:3000"
-      - "9005:9005"
     volumes:
       - .:/home/rasak/app
     tty: true
