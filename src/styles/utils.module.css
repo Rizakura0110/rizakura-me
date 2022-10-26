@@ -1,4 +1,4 @@
-.heading2Xl {
+  .heading2Xl {
     font-size: 1.5rem;
   }
   
@@ -29,11 +29,19 @@
     letter-spacing: 0.5px;
   }
 
-  .aboutHeadingMd {
-    margin-bottom: 20px;
-    text-transform: uppercase;
+  .headermenu{
+    display: block;
+  }
+
+  .menu{
     font-size: 15px;
-    letter-spacing: 0.5px;
+  }
+
+  .aboutHeadingMd {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 30px;
   }
 
   .icon {

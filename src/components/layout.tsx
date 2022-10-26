@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
+import Link from 'next/link'
 
 const name = 'rizakura'
 
@@ -22,15 +23,19 @@ export default function Layout({
       <header className={styles.header}>
         {home && (
           <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <div className={utilStyles.menu}>
+              <div className={utilStyles.aboutHeadingMd}>
+                <Link href={`/`}>
+                  <a>Home</a>
+                </Link>
+              </div>
+              <div className={utilStyles.aboutHeadingMd}>
+                <Link href={`/about`}>
+                  <a>About</a>
+                </Link>
+              </div>
+            </div>
+            
           </>
         )}
       </header>
