@@ -2,19 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('diary')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<BaseLayout title="My Astro Blog" description="A blog about my journey with Astro.">
+<BaseLayout title="My Diary" description="A collection of random thoughts.">
 	<section>
-		<h1 class="text-4xl font-bold mb-8">My Blog</h1>
-		<ul class="divide-y divide-slate-200 dark:divide-slate-700">
+		<h1 class="text-4xl font-bold mb-8">Diary</h1>
+		<ul class="space-y-8">
 			{posts.map((post) => (
-				<li class="py-6">
-					<a href={`/blog/${post.slug}/`} class="block group">
-						<h2 class="text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-600 dark:group-hover:text-slate-300">{post.data.title}</h2>
+				<li>
+					<a href={`/diary/${post.slug}/`} class="block group">
+						<h2 class="text-2xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-600 dark:group-hover:text-slate-300">{post.data.title}</h2>
 						<p class="text-slate-600 dark:text-slate-400 mt-2">{post.data.description}</p>
 						<p class="text-sm text-slate-500 dark:text-slate-500 mt-2">{new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(post.data.pubDate)}</p>
 					</a>

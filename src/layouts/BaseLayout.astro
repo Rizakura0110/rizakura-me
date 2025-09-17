@@ -1,0 +1,111 @@
+--- 
+import "../styles/global.css";
+
+export interface Props {
+	title: string;
+	description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, ogImage, ogType = 'website' } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site) : new URL('/images/default-og.svg', Astro.site);
+const siteName = "rizakura.me";
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+    {/* General Tags */}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* Open Graph */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rizakura_" />
+    <meta name="twitter:creator" content="@rizakura_" />
+	</head>
+	<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans">
+		<header class="py-6 border-b border-slate-200 dark:border-slate-800">
+			<div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+				<a href="/" class="flex items-center gap-3 text-xl font-bold text-slate-900 dark:text-slate-50 hover:text-slate-600 dark:hover:text-slate-300">
+					<img src="/images/アイコン.jpg" alt="Blog Title Icon" class="w-7 h-7 rounded-full object-cover">
+					りざくらのざれごと
+				</a>
+
+				<div class="flex items-center gap-2 sm:gap-4">
+					<!-- Desktop Nav -->
+					<nav class="hidden sm:flex items-center gap-4">
+						<a href="/" class="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Blog</a>
+						<a href="/diary" class="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Diary</a>
+						<a href="/about" class="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">About</a>
+					</nav>
+
+					<!-- X Icon -->
+					<a href="https://x.com/rizakura_" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+						</svg>
+					</a>
+
+					<!-- Hamburger Button -->
+					<button id="hamburger-button" class="sm:hidden p-2" aria-label="Open menu">
+						<svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+							<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+						</svg>
+						<svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden">
+							<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<!-- Mobile Menu -->
+			<div id="mobile-menu" class="hidden sm:hidden">
+				<nav class="flex flex-col items-center text-center gap-2 p-4">
+					<a href="/" class="block w-full py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">Blog</a>
+					<a href="/diary" class="block w-full py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">Diary</a>
+					<a href="/about" class="block w-full py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">About</a>
+				</nav>
+			</div>
+		</header>
+		<main class="max-w-4xl mx-auto px-4 py-8">
+			<slot />
+		</main>
+		<footer class="py-8 mt-8 text-center text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+			&copy; {new Date().getFullYear()} rizakura. All rights reserved.
+		</footer>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const hamburgerButton = document.getElementById('hamburger-button');
+				const mobileMenu = document.getElementById('mobile-menu');
+				const menuIcon = document.getElementById('menu-icon');
+				const closeIcon = document.getElementById('close-icon');
+
+				if (hamburgerButton && mobileMenu && menuIcon && closeIcon) {
+					hamburgerButton.addEventListener('click', () => {
+						mobileMenu.classList.toggle('hidden');
+						menuIcon.classList.toggle('hidden');
+						closeIcon.classList.toggle('hidden');
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

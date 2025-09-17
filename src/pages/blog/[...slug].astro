@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = {
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    heroImage?: string;
+  };
+  render: () => any;
+};
+
+const post = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<BaseLayout 
+  title={post.data.title} 
+  description={post.data.description}
+  ogImage={post.data.heroImage}
+  ogType='article'
+>
+  <article class="prose dark:prose-invert lg:prose-xl max-w-none">
+    <h1 class="text-slate-900 dark:text-slate-100">{post.data.title}</h1>
+    <p class="text-slate-600 dark:text-slate-400">公開日: {new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(post.data.pubDate)}</p>
+    {post.data.heroImage && <img src={post.data.heroImage} alt="" class="max-w-4xl mx-auto h-auto rounded-lg my-8" />}
+    <div class="mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
